@@ -77,20 +77,22 @@ func Benchmark_GetMIME(b *testing.B) {
 	var res string
 	b.Run("fiber", func(b *testing.B) {
 		for n := 0; n < b.N; n++ {
-			res = GetMIME(".xml")
-			res = GetMIME(".txt")
-			res = GetMIME(".png")
+			res = GetMIME(".7z")
 			res = GetMIME(".exe")
+			res = GetMIME(".xhtml")
+			res = GetMIME("jardiff")
+			res = GetMIME("nonexist")
 			res = GetMIME(".json")
 		}
 		AssertEqual(b, "application/json", res)
 	})
 	b.Run("default", func(b *testing.B) {
 		for n := 0; n < b.N; n++ {
-			res = mime.TypeByExtension(".xml")
-			res = mime.TypeByExtension(".txt")
-			res = mime.TypeByExtension(".png")
+			res = mime.TypeByExtension(".7z")
 			res = mime.TypeByExtension(".exe")
+			res = mime.TypeByExtension(".xhtml")
+			res = mime.TypeByExtension("jardiff")
+			res = mime.TypeByExtension(".nonexist")
 			res = mime.TypeByExtension(".json")
 		}
 		AssertEqual(b, "application/json", res)

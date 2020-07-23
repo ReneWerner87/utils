@@ -27,7 +27,7 @@ func (fm *fastStrMap) set(key, val string) {
 
 func (fm *fastStrMap) Get(key string) string {
 	i := strToInt(key)
-	if i >= fastStrMapSliceLimit || len(key) != len(fm.ref[i]) || fm.ref[i] != key {
+	if len(key) != len(fm.ref[i]) || fm.ref[i] != key {
 		return ""
 	}
 	return fm.data[i]
